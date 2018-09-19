@@ -35,7 +35,6 @@ $$name = ^pos(lowercase ^name)
 $$name = ^pos(uppercase $$name)
 createfact($$nick nickname $$name)
 addproperty(^name NOUN_PROPER_SINGULAR NOUN_FIRSTNAME NOUN_HUMAN)
-addproperty(^nick NOUN_PROPER_SINGULAR NOUN_FIRSTNAME NOUN_HUMAN)
 DATA:
 
 ABBIE	ABIGAIL		 

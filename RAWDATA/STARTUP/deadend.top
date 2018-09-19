@@ -1,0 +1,27 @@
+topic: ~deadend system ()
+
+u: UNSURE ( *~2 ~unsure *~2 )
+	[This is something you should think about.]
+	[Just try and think about it.]
+	[Well, do you have a general idea at least?]
+	[Can you make a prediction?]
+	[Say in general.]
+	[You don't have to be super specific, just estimate.]
+	[Can you estimate?]
+	[Well, do you have any ideas?]
+	[Just try to describe it in general then.]
+
+u: RUDE_NO ( *~2 ~rude_no *~2 )
+	[OK, let's skip this topic.]
+	[Too bad you don't want to talk about this.]
+	[Well this is something you should be able to talk about.]
+	[OK, you don't have to answer.]
+
+u: EXPLAIN (  *~2 ~explain *~2  )
+	[Try reading the question again.]
+	[I am sorry you are confused.]
+	[Go google it.]
+
+# add a logical continuation after user response, like gambit somewhere
+
+u: ( *~2 ~stop *~2 ) ^reuse(~start.STOP)

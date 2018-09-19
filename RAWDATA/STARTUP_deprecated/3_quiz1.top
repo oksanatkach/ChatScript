@@ -1,0 +1,12 @@
+topic: ~quiz1()
+
+
+t: Say when you've finished watching. ^'{"quickreply": [{"title": "I\'m finished", "payload": "next_video_quiz1"}]}'
+	a: ("next_video_quiz1") Hm, ok, thank you, Brian. $cs_login, what do you think?
+		^'{"quickreply": [{"title": "It was perfect!", "payload": "quiz1_option1"}, {"title": "It could use some work.", "payload": "quiz1_option2"}, {"title": "Wow, terrible!", "payload": "quiz1_option3"}]}'
+
+u: ("quiz1_option1") See, I like to live by the rule that there's always room for improvement. ^'{"options": [{"loop": [{"msg": "next_quiz1_quiz2", "repeat": 1, "sleep":2}]}]}'
+
+u: ("quiz1_option2") I agree!  ^'{"options": [{"loop": [{"msg": "next_quiz1_quiz2", "repeat": 1, "sleep":2}]}]}'
+u: ("quiz1_option3") Oh, I wouldn't be that harsh, it just needs a little bit of work.  ^'{"options": [{"loop": [{"msg": "next_quiz1_quiz2", "repeat": 1, "sleep":2}]}]}'
+u: ("next_quiz1_quiz2") ^gambit(~quiz2)

@@ -1,9 +1,0 @@
-topic: ~test ()
-
-t:	Start
-
-u: (_*)
-	$_link = '_0
-	$_data = ^'{"link":"$_link"}'
-	$_response = ^jsonopen(POST ^"http://127.0.0.1:5000/link" $_data "")
-	$_response.match

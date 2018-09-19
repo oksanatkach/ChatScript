@@ -1,0 +1,16 @@
+topic: ~brian()
+
+
+t: BRIAN_1 () First, I want to introduce you to someone. This is my friend Brian. ^'{"options": [{"loop": [{"msg": "next_brian_image1", "repeat": 2, "sleep":2}]}]}'
+
+	a: ("next_brian_image1") Hi, $cs_login! ^'{"attachment": {"type": "image", "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGWqia6jZDy55UVAk4RDtbUdkyhw8dVmvXJNmLuio-do2jack2RQ"}}'
+	b: ("next_brian_image1") Say hi!
+	
+	c: () Brian is awesome. He has a great startup idea. But he's not a very good speaker. ^'{"options": [{"loop": [{"msg": "next_brian_image2", "repeat": 2, "sleep":2}]}]}'
+	d: ("next_brian_image2") I guess I'm not... ^'{"attachment": {"type": "image", "url": "https://i.pinimg.com/736x/38/bf/9e/38bf9ec60bbd8a6e22a5db8e6b7cb6ad--dachshunds-piggy-bank.jpg"}}'
+	e: ("next_brian_image2") Aww, don't get discouraged, Brian! $cs_login, let's pretend we are the investors. Brian can pitch to us, and we'll tell him what he got wrong. Are you in?
+	
+	f: () Alright, here we go. Brian, tell me about your startup. ^'{"options": [{"loop": [{"msg": "next_brian_video", "repeat": 2, "sleep":2}]}]}'
+
+	g: ("next_brian_video") OK! ^'{"attachment": {"type": "video", "url": "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"}}'
+	h: ("next_brian_video") ^gambit(~quiz1)

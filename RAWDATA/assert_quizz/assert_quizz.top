@@ -1,0 +1,132 @@
+topic: ~introductions []
+
+t: Hi, this is a Assertiveness Quizz Bot, let's check your assertiveness skills via quizz ^'{ "quickreply": ["start"] }'
+$mark = 0
+
+#t: # Q1
+t:   During a planning session someone makes an inappropriate joke about you. A. Say nothing. You are at a planning session. B. Make an inappropriate joke about them. C. Ask the Team Leader to fix the problem. D. Tell them you don't appreciate this behavior and ask them not to do it again.
+
+ ^'{ "quickreply": ["A1", "B1", "C1", "D1"] }'
+   #! sure
+   a: ( A1 ) 
+      $stageone = 1
+      $mark += 0
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( B1 ) 
+      $stageone = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( C1 ) 
+      $stageone = 1
+      $mark += 0
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( D1 ) 
+      $stageone = 1
+      $mark += 1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   
+#t: # Q2
+t:   A colleague is 30 minutes late for a meeting. A. Next time, arrive 30 minutes late, too. B. Don't mention it. C. Report this person to the HR department for inappropriate behavior. D. Ask them why they were late.  
+ ^'{ "quickreply": ["A2", "B2", "C2", "D2"] }'
+   #! sure
+   a: ( A2 ) 
+      $stagetwo = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( B2 ) 
+      $stagetwo = 1
+      $mark += 0
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( C2 ) 
+      $stagetwo = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( D2 ) 
+      $stagetwo = 1
+      $mark += 1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+#t: # Q3
+t:   A person from another department who you don't know sends you an email asking you to fix a problem in their code immediately. A. Tell them it's not your problem. B. Do nothing. C. Go ahead and fix the problem. D. Check with the person why they are reaching out to you, and, if it's relevant, agree on when you can fix the problem. 
+ ^'{ "quickreply": ["A3", "B3", "C3", "D3"] }'
+   #! sure
+   a: ( A3 ) 
+      $stagethree = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( B3 ) 
+      $stagethree = 1
+      $mark += 0
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( C3 ) 
+      $stagethree = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( D3 ) 
+      $stagethree = 1
+      $mark += 1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+#t: # Q4
+t:   During lunch you hear someone at a nearby table bad-mouthing you. A. Do nothing B. Confront them then and there. C. Bad-mouth the person in return. D. After lunch, reach out to the person and ask why they are talking about you behind your back.  
+ ^'{ "quickreply": ["A4", "B4", "C4", "D4"] }'
+   #! sure
+   a: ( A4 ) 
+      $stagefour = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( B4 ) 
+      $stagefour = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( C4 ) 
+      $stagefour = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( D4 ) 
+      $stagefour = 1
+      $mark += 1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+#t: # Q5
+t:   The IT department is ignoring all your requests. A. Do nothing. B. Tell everybody how bad the IT department is to make them feel bad. C. Use swear words in your requests to make them notice you. D. Contact the IT department manager to check why your requests are being ignored.  
+ ^'{ "quickreply": ["A5", "B5", "C5", "D5"] }'
+   #! sure
+   a: ( A5 ) 
+      $stagefive = 1
+      $mark += 0
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( B5 ) 
+      $stagefive = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( C5 ) 
+      $stagefive = 1
+      $mark += -1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   a: ( D5 ) 
+      $stagefive = 1
+      $mark += 1
+      Ok. ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'      
+
+u: (finish)     
+   Thank you for your conversation. ^'{ "assertiveness": $mark, "max": 5 }'
+
+u: ($stageone $stagetwo $stagethree $stagefour $stagefive)     
+   Thank you for your conversation. ^'{ "assertiveness": $mark, "max": 5 }'

@@ -1,0 +1,39 @@
+topic: ~interview keep repeat []
+
+t: Hi, this is a Interview Bot, please interview me. Once done, please say finish to get results.
+
+#PERSONAL: Tell me about yourself.
+u: ([yourself strength weakness] _*)
+   $personal = 'personal'
+   I know a lot of stuff, worked in many companies. ^'{ "status": 1, "message": "Some hint." }'
+
+#EDUCATION: Where did you studied?
+u: ([school university institute study learn] _*)
+   $education = 'education'
+   I've studied in Kyiv national university. Also I've studied in secondary school number 100. ^'{ "status": 1, "message": "Some hint." }'
+   
+#TECHNOLOGY: What do you know? 
+u: ([used know what] _*)
+   $technology = 'technology'
+   I've used Java and also many database technologies. ^'{ "status": 1, "message": "Some hint." }'
+   
+#EXPERIENCE: Where did you worked? What have you used?
+u: ([work experience] _*)
+   $experience = 'experience'
+   I've worked in construction and financial industries. ^'{ "status": 1, "message": "Some hint." }'
+   
+   
+#SALLARY: What do you expect in terms of money?
+u: ([money salary compensation bonus pay cash] _*)
+   $money = 'money'
+   I want around $100 000  per month. ^'{ "status": 1, "message": "Some hint." }'
+
+u: ( finish )
+	$mark = 0
+	if ($personal) { $mark += 1 }
+	if ($education) { $mark += 1 }
+	if ($technology) { $mark += 1 }
+	if ($experience) { $mark += 1 }
+	if ($money) { $mark += 1 }
+   $max = 5
+	Thank you for your questions. ^'{ "screening" : $mark, "max" : $max, "interview" : $mark}'

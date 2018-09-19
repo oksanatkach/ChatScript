@@ -25118,14 +25118,11 @@ table: ~characters (^movie ^character )
 	createfact(^character character ^movie)
 DATA:
 "The Wizard of Oz" ("Wizard of Oz") ["Tin man" "Cowardly Lion" Toto Dorothy "Wizard of Oz" Glinda]
-Buffy_The_Vampire_Slayer [Buffy Angel Giles ]
+Buffy_The_Vampire_Slayer Buffy
 [Batman_Returns Batman_Forever] Batman
 The_Matrix Neo
-"Forrest_Gump" "Forrest Gump"
+"Forrest_Gump" "Forrest_Gump"
 "Star Wars" ["Princess Leia" "Han Solo" "Darth Vader" "Luke Skywalker" C-3PO Chewbacca Yoda]
-"Star Trek" [Bones]
-"Star Trek Voyager" ["No one"]
-"Star Trek Next Generation" [Data]
 ["The Matrix" "The Matrix Reloaded" "The Matrix Revolutions"] "Agent Smith"
 X-Men [Wolverine]
 Psycho "Norman Bates"
@@ -25954,7 +25951,7 @@ High_Sierra
 Dirty_Work
 Whats_The_Worst_That_Could_Happen
 Risky_Business
-Wizard_Of_Oz
+The_Wizard_Of_Oz
 I_Robot
 The_Yards
 The_Incredibles

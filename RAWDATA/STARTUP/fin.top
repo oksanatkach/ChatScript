@@ -1,0 +1,50 @@
+topic: ~fin ( investment fundraise seed money finance fundraising invest investor round monetize revenue share )
+
+t: How much money are you raising?
+	$fin_in = 1
+	
+u: ( *~2 ~explain *~2 )
+	[How much money do you need to keep doing your startup?]
+	[What sum are you trying to have invested?]
+	[I want to know how much money you'd like to get as investment.]
+
+?: ( ["how much do you have" "how much can you give"] ) I can't answer that question for you. Be specific.
+
+u: ( {raise} [ ~money dollar $ buck million mil mils thousand hundred ] {round} )
+	$fin = $fin + 0.25
+	And what is the company valuation?
+	a: (* ~unsure *) ^reuse(~deadend.UNSURE) So tell me, why are you fundraising?
+	a: ( *~2 ~explain *~2 )
+		[It's like an estimated value of your business.]
+		[It means how much your company's worth.]
+		[If somebody wanted to buy your business, how much would you ask for it?]
+	a: ( * [ ~money dollar $ buck million mil mils thousand hundred ] * )
+		[What is the planned use of proceeds from this round?]
+		[Why are you fundraising? What are you going to spend the money on?]
+
+u: ([ beta "proof of concept" "bigger team" "full time" "get it out there" "enter the market" improve finish launch scale milestone])
+	$fin = $fin + 0.25
+	And why do you think this is what you need to improve to move forward?
+	a: ( *~2 ~explain *~2 )
+		[What I mean is how did you come up with that plan? Why do you think it's the right one?]
+		[Explain why exactly those are the things you need to do next.]
+		[I want to know why you want to spend the money on those particular things.]
+
+u: ( [month year build feature longevity "vested interest" "seed money" pay preliminary operation market research product development] )
+	$fin = $fin + 0.25
+	OK, good. How much revenue have you generated to date?
+	a: ( [ ~no none "no revenue yet" pre-revenue prerevenue "pre revenue" ] )
+		It's ok, but you still need to think about monetizing. ^gambit(~money)
+	a: ( * ~money * )
+		$fin = $fin + 0.25
+		I see, thank you. ^gambit(~money)
+	a: ( *~2 ~explain *~2 )
+		I mean how much money have you made since your product went live.
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$fin_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)

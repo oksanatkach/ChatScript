@@ -1,0 +1,67 @@
+topic: ~introductions []
+
+t: Hi, this is a Pitch Bot, let's proceed with startup questions.
+ ^respond(~question)
+
+#PRODUCT: We are building a sales analytics product. 
+u: PRODUCT ([product] _*)
+   Good, product segment is addressed. ^'{ "status": 1, "message": "Some hint." }'
+   $product = 'product'
+   ^respond(~question)
+
+#MARKET: The target market for this is retail industry. 
+u: MARKET ([retail industry] _*)
+   $market = 'market'
+   Good, market segment is addressed. ^'{ "status": 1, "message": "Some hint." }'
+   ^respond(~question)
+
+#FOUNDERS: The team is funded by 3 senior engineers with significant amount of experience.
+u: FOUNDERS ([team engineer founder] _*)
+   $founder = 'founder'
+   Good, founder segment is addressed. ^'{ "status": 1, "message": "Some hint." }'
+   ^respond(~question)
+   
+#MONEY: We are looking for 3 milion bucks for 10% of equity.
+u: MONEY ([million equity] _*)
+   $money = 'money'
+   Good, market segment is addressed. ^'{ "status": 1, "message": "Some hint." }'
+   ^respond(~question)
+   
+#COMPETITORS: We have many competitors in many areas
+u: COMPETITORS ([competitor] _*)
+   $competitors = 'competitors'
+   Good, competitor segment is addressed. ^'{ "status": 1, "message": "Some hint." }'
+   ^respond(~question)   
+
+u: ( finish _* )
+	$mark = 0
+	if ($product) { $mark += 1 }
+	if ($market) { $mark += 1 }
+	if ($founder) { $mark += 1 }
+	if ($money) { $mark += 1 }
+	if ($competitors) { $mark += 1 }
+   $tmp_mark = 5
+	Thank you for your pitch. ^'{ "presentation": $mark, "max": $tmp_mark }'
+
+u: DEFAULT ()
+   ^respond(~question)
+
+topic: ~question repeat keep nostay []
+
+u: (!$market) # market
+   What is the actual addressable market?
+
+u: (!$founder) # founders
+   Who are the founders and key team members?
+
+u: (!$product) # product
+   What product you are building?
+
+u: (!$competitors) # competitors
+   Who are the company's competitors?
+   
+u: (!$money) # money
+	How much money do you need?
+   
+u: ($product $market $founder $money $competitors)
+   You successfully addressed all of the required questions!!! ^'{ "presentation": 5, "max": 5 }'

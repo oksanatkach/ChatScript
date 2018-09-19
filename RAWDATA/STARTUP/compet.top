@@ -1,0 +1,55 @@
+topic: ~compet ( competition competitor race competitive stakeholder outperform struggle challenger rival contest )
+
+t: [Right, so who are the company's competitors?] [There are surely other companies working in this space? What do you know about your competition?]
+	$compet_in = 1
+
+u: ( *~2 ~explain *~2 )
+	[Think about who could be doing the same thing as you.]
+	[So your competition is the companies that work in the same market.]
+	[Well, who's doing the same thing as you? Similar service or product?]
+
+u: ( * ~all * do * ) Then why do you think you can do it better than everybody else?
+
+u: ( * ~categorical * ) I find it hard to believe. What is so unique about your idea?
+	a: ADVANT ( * ~explain * )
+		[Well, for instance, do you have any technological advantages? Or remarkable people on your team?]
+		[What is so special about your product noone else can replicate?]
+		[What makes you better than others at this?]
+		[What's your super power?]
+
+u: ( * be * ~generic * ) Sure, but what will give your company a competitive advantage?
+	a: ( * ~explain * ) ^reuse(ADVANT)
+	
+u: ( * [technology app website platform] * ) What's the closest competitor of the technology?
+	$compet = $compet + 0.25
+	a: (* !~categorical *) Why do you think you can compete?
+	a: (* ~categorical *) Are you sure?
+	a: ( * ~explain * ) ^reuse(ADVANT)
+
+u:( * have * ["professional advantage" background experience ~price specific focus demographic "meet the needs" "ability to scale"] * )
+	$compet = $compet + 0.25
+	That's great, but tell me, what prevents someone else from copy-catting you?
+	a: ( * ~explain * ) ^reuse(ADVANT)
+
+u: HOW ( * we be competitor to * )
+	$compet = $compet + 0.25
+	[How do you plan to beat your competitors?]
+	[How are you planning to deal with that competition?]
+	[And what are your advantages compared to them?]
+	a: ( * ~explain * ) ^reuse(ADVANT)
+
+u: ( <<[ "professional advantage" "low barrier of entry" "hard to do" ] !~generic>> )
+	$compet = $compet + 0.25
+	That is good to hear. Have you thought about user acquisition already?
+	a: ( * ~yes * ) That's good. ^gambit(~market)
+	a: ( * ~no * ) It's something you should decide on. ^gambit(~market)
+	a: ( * ~explain * ) ^reuse(ADVANT)
+
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$compet_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)

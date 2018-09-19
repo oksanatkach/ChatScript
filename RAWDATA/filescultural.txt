@@ -1,0 +1,3 @@
+# underlying conversation system
+RAWDATA/cultural/simplecontrol.top	
+RAWDATA/cultural/cultural.top # culturalbot data

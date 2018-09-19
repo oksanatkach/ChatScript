@@ -1,0 +1,37 @@
+topic: ~end system (stop end)
+
+u: STOP ( *~2 ~stop *~2 ) Would you like to stop the chat and see your results?
+	a: ( ~no ) Good, let's continue. ^gambit(%topic)
+	a: ( ~yes ) OK! ^reuse(END)
+	
+u: END ()
+
+	if (
+		^check_ins($compet_in $fin_in $future_in $market_in $money_in $prod_in $team_in) == 7
+		)
+	{
+		It was interesting to hear about your startup. Here are your scores.
+		Competition: $compet %
+		Financing: $fin %
+		Future: $future %
+		Market: $market %
+		Money: $money %
+		Product: $prod %
+		Team: $team %
+		Here's some advice on your pitch.
+		if ($compet = 0) {You should learn about your competition.}
+		if ($fin = 0) {Decide on how much money are raising for your startup.}
+		if ($future = 0) {Think about your future plans.}
+		if ($market = 0) {Clearly define your place on the market.}
+		if ($money = 0) {Decide on what to say when asked how your company makes money.}
+		if ($prod = 0) {Learn to describe your product better.}
+		if ($team = 0) {You should learn to describe your team better.}
+	}
+
+u: (!$compet_in) ^gambit(~compet)
+u: (!$fin_in) ^gambit(~fin)
+u: (!$future_in) ^gambit(~future)
+u: (!$market_in) ^gambit(~market)
+u: (!$money_in) ^gambit(~money)
+u: (!$prod_in) ^gambit(~prod)
+u: (!$team_in) ^gambit(~team)

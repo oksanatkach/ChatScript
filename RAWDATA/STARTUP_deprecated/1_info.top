@@ -1,0 +1,23 @@
+topic: ~info()
+
+
+t: INFO	() To impress any investor, you need to be able to answer questions about 5 main areas of business: market, competition, founders & team, finances, and products and services your startup offers. ^'{"quickreply": [{"title": "next", "payload": "next_info_a"}]}'
+	
+	a: ("next_info_a") For instance, when talking about market, mention exactly what demographic you are targeting and how. Be specific: it shows that you have thought your business idea through.
+		^'{"quickreply": [{"title": "next", "payload": "next_info_b"}]}'
+	
+	b: ("next_info_b") You also need to have made some research about your competition. Know exactly what companies could be taking over your business and how you are going to outsmart them.
+		^'{"quickreply": [{"title": "next", "payload": "next_info_c"}]}'
+	
+	c: ("next_info_c") The investors will also most definitely ask about your team. What do you and your cofounders have that make your startup stand out? Even if your background is in an unrelated area, don't get discouraged: talk about some cool projects you've done so far. Investors need creative people that can finish projects rather than experts in everything.
+		^'{"quickreply": [{"title": "next", "payload": "next_info_d"}]}'
+	
+	d: ("next_info_d") Of course, the main reason why you are pitching is the money! Don't go asking for money if you're not sure why. It looks amateur. Decide what are the burning tasks you need to complete so your startup can move forward, and estimate how much money you would need to finish those tasks. Again, be specific!
+		^'{"quickreply": [{"title": "next", "payload": "next_info_e"}]}'
+	
+	e: ("next_info_e") You also absolutely need to know all the nooks and crannies of your product. If you're making an app, make sure you know what features to show and where to find them. If it's a piece of hardware, make at least one working prototype. Nothing convinces an investor more than an actual working product they can use or touch. It shows you are serious.
+		^'{"quickreply": [{"title": "next", "payload": "next_info_f"}]}'
+	
+	f: ("next_info_f") Phew! That's a lot of info to remember, I know. But don't get overwhelmed! I'll walk you through it.
+		
+	g: FINISH () gambit(~brian)

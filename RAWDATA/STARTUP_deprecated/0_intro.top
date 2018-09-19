@@ -1,0 +1,6 @@
+topic: ~intro()
+
+
+t: INTRO () Hi! During this training you'll learn how to pitch your startup idea to potential investors like a pro.
+	a: () Great! Here we go.
+	gambit(~info)

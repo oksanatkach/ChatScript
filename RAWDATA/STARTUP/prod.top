@@ -1,0 +1,57 @@
+topic: ~prod ( cloud functionality hardware computer internet “form factor” web-site website site service platform network software )
+
+t: PROD ()	[Can you tell more about your product or service?]
+			[OK, tell me how your product works in more detail.]
+			[Interesting. Could you provide more details?]
+			$prod_in = 1
+
+u: ( *~2 ~explain *~2 ) ^reuse(PROD)
+
+u: ( * [app web-site device service software program technology prototype] * )
+	$prod = $prod + 0.2
+	Where'd the idea for the product come from?
+
+# Me and my friend came up with it
+# it's a website with/for
+# charge - percentage
+
+u: ( *[pay money price monetize cost]* )
+	$prod = $prod + 0.2
+	What is your price point?
+		a: ( *~2 ~explain *~2 ) I mean how much does your product cost?
+
+u: ([unique revolutionary revolutionize transform innovate innovation reform experience])
+	So what is it exactly that's so special about your product?
+		a: ( * ["nothing special" "nothing" "not special"] *) Then why are you making it?
+		# a: () And how is it different from your competitors'?
+
+u: ( [ user experience service product program software ] ) What's the use case here?
+	a: ( *~2 ~explain *~2 ) Use case means for what purpose are people going to use your product?
+
+u: (*[user base acquire beta alpha "roll out"]*)
+	$prod = $prod + 0.2
+	OK, thank you. So is your product live already?
+	a: (~no) Well, when do you plan to launch?
+	a: (~yes) How many active users do you have at the moment?
+	a: ( *~2 ~explain *~2 ) Have you actually made your product available to users?
+	
+u: ( [goal vision data technology problem software hardware web-site website site service platform network] )
+	$prod = $prod + 0.2
+	Sounds very cool. How are you monetizing it?
+		a: ( * ~unsure * ) Well, do you have any ideas?
+		a: ( * [ ~no ~unsure ~explain ] * ) Well, for instance, you could charge a fee or add a subscription for some extra services.
+
+u: ( [ user market niche people ] )
+	$prod = $prod + 0.2
+	And how many people would be using this thing?
+	a: (*[~number "quite a few" "a lot" "sufficient" many]*) Congrats!
+	^gambit(~users)
+	a: ( *~2 ~explain *~2 ) I want an estimation about the number of users you'll get.
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$prod_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)

@@ -1,0 +1,84 @@
+topic: ~market ( market niche "target demographic" "user base" "use case" "active users" user attract acquire demographic people customer client student employee employer)
+
+t: What do you think is the total addressable market?
+	$market_in = 1
+
+u: (* ~explain *)
+	[So the total addressable market is how much money you can make from your product.]
+	[It's a share of the money you can get from people.]
+
+u: ( * ~money * )
+	$market = $market + 0.1
+	How did you come to that number?
+
+u: ( * be * [~number ~currency] * industry * )
+	$market = $market + 0.1
+	And how much of that do you take?
+		a: SHARE (* ~explain *) I mean some of the money your competitors will get, but how much is left for you?
+
+u: ( * target the _*~3 market * )
+	$market = $market + 0.1
+	How big is the '_0 market?
+	a: (* ~explain *) Approximately, how much money is there in that market?
+	
+u: (* [user people community base active acquisition] *)
+	$market = $market + 0.1
+	What is the target demographic? Who you are really targeting?
+	a: ( [ target age market towards men women group people client market student employee ] )
+		$market = $market + 0.1
+		What kind of research have you done on that?
+		a: (* ~explain *) I mean how did you come with that number? Do you have an explanation?
+			a: ( ~yes ) Care to elaborate?
+			b: ( ~no ) ^poptopic(%topic) ^reuse(~deadend.RUDE_NO)
+
+u: ( << !~money ~unsure >> ) ^keep() ^repeat()
+	[Well, do you have a general idea at least?]
+	[Can you make a prediction?] [Say in general.]
+	[You don't have to be super specific, just estimate.]
+
+u: ( * ~all * ) ^keep() ^repeat()
+	[It's rather unlikely. Can you be more specific here?]
+	[That's a bold statement! Could you get into detail?]
+	[Really? Why do you think that?]
+
+u: ( [ engagement traffic client user customer register active revenue profit growth accelerate] )
+	$market = $market + 0.1
+	Hmm, so what is your traction?
+		a: ( [~no none "don't have"] ) Do you have any predictions?
+		a: ( !~number ) Can you give me some numbers here?
+		a: (* ~explain *) It generally means how well you are doing in the market in terms of users and profit.
+
+u: ( * [ market target segment estimate ] * )
+	$market = $market + 0.1
+	So what's the estimated market share?
+	a: (* [percent percentage fraction %] *) I see you have done your research. Do you have any predictions about user acquisition?
+	a: (* ~explain *) ^reuse(SHARE)
+	
+u: ( * [people user consumer] * )
+	$market = $market + 0.1
+	Who is actually going to be using the product?
+	a: (* ~explain *) What kind of groups of people would be interested in your product?
+
+u: ( * [ user public community ] * )
+	[How are you going to attract users?]
+	[How do you plan to acquire users?]
+	[What is your customer acquisition strategy?]
+	$market = $market + 0.1
+	a: ( * [user base attract] * ) Do you have predictions about user compliance?
+	a: (* ~explain *) I mean what's your plan to reach out to more people?
+
+u: ( * [ attract client customer demographic ] * ) Tell me who are your clients?
+	$market = $market + 0.1
+	a: (* ~explain *) Just who are the people using your product?
+	a: ( [ market niche "target demographic" user demographic people customer client student employee employer ] )
+		What sort of data do you have on that?
+
+u: ( [ problem issue ] ) What is the biggest reason that people could say, “no, I don't want to work with you”?
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$market_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)

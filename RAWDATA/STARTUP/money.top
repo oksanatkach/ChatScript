@@ -1,0 +1,68 @@
+topic: ~money ( revenue "revenue stream" money profit subscription fee pricing cost percent ~number )
+
+t: What are your sources of revenue?
+	$money_in = 1
+
+u: ( * ~explain * )
+	[How do you make money?]
+	[What in your business model brings you money?]
+
+# u: ( [product service app website web-site] )
+#	$money = $money + 0.2
+#	How are you planning to monetize the product?
+#	a: ( * ~explain * ) What are users actually paying for?
+
+u: ( * [hardware device] * ) How much does it cost to manufacture your device?
+	a: ( * [manufacture hardware device cheap expensive dollar $ money] * )
+	$money = $money + 0.2
+	What stores is it going to be sold at?
+	a: (* ~unsure *) Can you estimate?
+
+u: (* [own proprietary] *) Do you have a patent?
+	a: ( * ~yes * ) Good thinking!
+	a: ( * ~no * ) You should think about some legal protection there.
+	a: ( * ~explain * ) I mean maybe you should think about patenting your product.
+
+u: ( [charge subscription commission fee deluxe optional extra service] )
+	$money = $money + 0.2
+	Hmm, clever! What do you charge?
+		a: ([dollar $ mil million thousand hundred buck ~money])
+		$money = $money + 0.2
+		So take me through your justification for that price.
+		a: ( * ~explain * ) Just explain why you decided to set that price.
+
+u: ( * [money revenue profit] * )
+	$money = $money + 0.2
+	How much sales have you generated already?
+		a: (*[none ~no]*) What do you think it can pay? Do you have any idea?
+		a: (~yes) You've been selling since when?
+			b: ( * [~timeword ~date year month day ago since] * ) How did you get that traction?
+		a: ( * ~explain * ) I mean how much money have your product brought to you?
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$money_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)
+
+
+# Have you done paid customer acquisition?
+# What does the revenue stream look like?
+# How much is a subscription?
+# How are you selling it?
+# Where are you at in terms of revenue run rate?
+# How do you make money?
+# historical performance
+# deliver XX% return
+# generate money
+# revenue source
+# revenue split
+# %number% figure deal
+# online subscription
+# operations cost not realistic
+# charge fee
+# pre-revenue
+# we charge $XX a month/year/day
+# free trial

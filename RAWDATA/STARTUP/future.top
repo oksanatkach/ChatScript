@@ -1,0 +1,46 @@
+topic: ~future ( prediction projection future next strategy grow growth )
+
+t: [What are you planning next for your company?] [When you raise this round, what's your go to market strategy?]
+	$future_in = 1
+	
+u: ( *~2 ~explain *~2 )
+	[Just talk about your plans for the future.]
+	[I want to know about your future projections.]
+	[I mean that I want you to tell me what you want to do in the future.]
+
+u: ( [market demographic target] )
+	$future = $future + 0.25
+	What other markets do you see available?
+	a: ( *~2 ~explain *~2 ) Think about what other groups of people could use your product.
+
+u: ( [develop development scale grow expand] )
+	$future = $future + 0.25
+	How do you plan to scale your business?
+	a: ( *~2 ~explain *~2 ) I want to know how you'll expand your startup to more people.
+
+u: ( [time year month] )
+	$future = $future + 0.25
+	How are you thinking about the next year to 18 months?
+	a: ( *~2 ~explain *~2 ) I mean what are the plans for the near future.
+
+u: ( [launch beta] ) So you haven't launched yet?
+	a: ( * ~no * ) Got it. What's the plan after the launch?
+	a: ( * ~yes * ) What is your revenue? 
+	a: ( *~2 ~explain *~2 ) Is your product actually available to users already?
+
+u: ( [revenue profit price] ) What do you think your burn is going to be? How much will you be spending?
+	a: ( * ~unsure * ) ^reuse(~deadend.UNSURE)
+	a: ( * ~money * )
+		$future = $future + 0.25
+		OK, I see. Could you explain why you think that's the case?
+	a: ( *~2 ~explain *~2 ) I mean do you have an estimation of how much money you'll be spending per month?
+
+# u: ([short-term long-term plan build ecosystem community virtualize credibility presell gauge demand "world's largest" "inventory risk" "brand identity" "dream team"])
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$future_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)

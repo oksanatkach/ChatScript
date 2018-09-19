@@ -1,0 +1,14 @@
+topic: ~quiz2()
+
+
+t: Do you have any ideas about what Brian could improve? ^'{"quickreply": [{"title": "He wasn\'t clear about the market.", "payload": "quiz2_option1"}, {"title": "He didn\'t mention investments.", "payload": "quiz2_option2"}, {"title": "He wasn\'t confident enough.", "payload": "quiz2_option3"}, {"title": "All of the above.", "payload": "quiz2_option4"}]}'
+
+u: FALSE ("quiz2_option1") ^repeat() Are you sure that's the only problem with Brian's pitch? ^'{"quickreply": [{"title": "The addressable market.", "payload": "quiz2_option1"}, {"title": "He didn\'t mention investments.", "payload": "quiz2_option2"}, {"title": "He wasn\'t confident enough.", "payload": "quiz2_option3"}, {"title": "All of the above.", "payload": "quiz2_option4"}]}'
+u: ("quiz2_option2") ^reuse(FALSE)
+u: ("quiz2_option3") ^reuse(FALSE)
+u: (["quiz2_option1" "quiz2_option2" "quiz2_option3"]) Actually, it's all of the above! ^'{"options": [{"loop": [{"msg": "next_finish_quiz2", "repeat": 1, "sleep":2}]}]}'
+
+u: ("quiz2_option4") Exactly! You are good at this. ^'{"options": [{"loop": [{"msg": "next_finish_quiz2", "repeat": 1, "sleep":2}]}]}'
+
+u: ("next_finish_quiz2") Great work! OK, $cs_login, now it's your turn. ^'{"options": [{"loop": [{"msg": "next_pitch_bot", "repeat": 1, "sleep":2}]}]}'
+	a: ("next_pitch_bot") ^gambit(~startup)

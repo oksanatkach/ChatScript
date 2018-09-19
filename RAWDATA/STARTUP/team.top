@@ -1,0 +1,79 @@
+topic: ~team ( founder co-founder CEO advisor team employee partner friend companion mate associate )
+
+t:	[So who started the company?]
+	[What's the rest of the team?]
+	[Cool. That's super interesting. Tell me how you got into this business.]
+	$team_in = 1
+	
+u: ( *~2 ~explain *~2 ) Just talk about your team.
+
+#! me and my friends
+u: (*~3 I and *) Well, could you tell me more about your team?
+
+u: ( * friend * partner * ) Oh-oh, do you think being friends help you be better business partners? ^reuse(PARTNER)
+
+#! The company was started by %name%
+u: FOUNDER ( * [company project startup]  * be * [start found create establish launch ] * by *)
+	[Who else is on the team?]
+	[Can you tell me about other people on the team?]
+	
+#! %name% started the company
+u: ( * [start found create establish launch ] * [company project startup] *)
+	^reuse(FOUNDER)
+
+#! %name% partnered up with %another_name%
+u: PARTNER ( * partner up * with * )
+	[Do you think you make good partners?]
+	[How do you like working together?]
+	[Do you think it's a good partnership?]
+	a: (*[~yes ~good_quality_adjectives]*) Why?
+	a: (* ~no *) Then why do you work together?
+
+#! %name% had been an advisor
+u: (* advisor *)
+	How did that relationship improve the way you run the company?
+	a: ( *~2 ~explain *~2 ) I mean did you learn anything from your advisor?
+
+#! We are planning to hire...
+u: ( * plan * hire * )
+	$team = $team + 0.2
+	Why do you think you need to expand your team right now?
+	a: ( [ develop extend launch improve ] )
+		$team = $team + 0.2
+		What else is in the future plans?
+	a: ( *~2 ~explain *~2 ) Explain why you need to hire new people.
+
+u: ( [ professional ~good amazing best smart experienced ] )
+	OK, thank you. Why do you think your team can succeed?
+
+u: ( * my partner * )
+	^reuse(PARTNER)
+
+u: ( * be [a the my his their] partner * )
+	^reuse(PARTNER)
+
+u: ( ~generic ) Can you be more specific?
+	a: ( ~unsure ) Well, for instance, what did you study? Where have you worked?
+		a: ([~education school college study])
+			$team = $team + 0.2
+			I see, thank you. What about your work background?
+		a: ([~work project company industry])
+			$team = $team + 0.2
+			And what about your education?
+
+u: ([~work ~education study])
+	$team = $team + 0.2
+	Thank you. So what relevant experience do you have in this industry?
+	a: ( *~2 ~explain *~2 ) I am asking about your work experience.
+
+u: ( [ industry domain field ] ) What domain experience specifically do you have?
+	a: ([~unsure ~categorical ~no]) So what makes you think you can succeed in this industry?
+	a: ( *~2 ~explain *~2 ) Well, for instance, where have you worked?
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)
+u: ( *~2 ~rude_no *~2 )
+	$team_pop = 1
+	^poptopic(%topic)
+	^reuse(~deadend.RUDE_NO)

@@ -1,0 +1,56 @@
+topic: ~introductions []
+
+t: Hi, this is a Cultural Bot, let's test your culutral skills. You are located in the room with entire team. Planning meeting is happening and team lead Jack is handling the conversation. You already overbooked with work for next two weeks. ^'{ "quickreply": ["start"] }'
+$mark = 0
+
+#t: # Stage one
+t:   Hi, we need your help in getting to our project goals. Would you be able to take on two additional tasks each one week long? ^'{ "quickreply": ["yes", "no"] }'
+   #! sure
+   a: ( ~yes ) 
+      $stageone = 1
+      Super! Thank you very much! ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+   #! never
+   a: ( ~no ) 
+   $mark += 1
+   $stageone = 1
+   Oh. We are under big pressure over this. Are you really sure you can't take on this? Could you please take on this task? ^'{ "status": 2, "message": "Some hint.", "quickreply": ["yes", "no"] }'
+      #! yes
+      b: ( ~yes ) 
+      $stageone = 1
+      Super. Thanks! ^'{ "status": 0, "message": "Some hint.", "quickreply": ["next"] }'
+
+      #! no 
+      b: ( ~no ) 
+      $mark += 1
+      $stageone = 1
+      Fine then ^'{ "status": 1, "message": "Some hint.", "quickreply": ["next"] }'
+         # could you please explain why? ^'{ "status": 1, "message": "Some hint." }'
+
+#u: (!$stagetwo) # Stage two
+t:   Michael is having a problem with his environment and will not be able to participate in the relase. Because of this we need somebody to help him out. Will you be able to do that? ^'{ "status": 2, "message": "Some hint.", "quickreply": ["yes", "no"] }'
+   #! sure
+   a: ( ~yes ) 
+   $stagetwo = 1
+   Michael will be gratefull! Thank you! ^'{ "status": 0, "message": "Some hint." }'
+
+   #! never
+   a: ( ~no ) 
+   $mark += 1
+   Oh. Michael problem is serious. He really needs help. Are you really sure you can't take on this? ^'{ "status": 1, "message": "Some hint.", "quickreply": ["yes", "no"] }'
+      #! yes
+      b: ( ~yes ) 
+      $stagetwo = 1
+      Super. Thanks! ^'{ "status": 0, "message": "Some hint." }'
+
+      #! no 
+      b: ( ~no ) 
+      $stagetwo = 1
+      $mark += 1
+      Fine then ^'{ "status": 1, "message": "Some hint." }'
+
+u: (finish)     
+   Thank you for your conversation. ^'{ "rejection": 5, "max": 5 }'
+
+u: ($stageone $stagetwo)     
+   Thank you for your conversation. ^'{ "rejection": 5, "max": 5 }'

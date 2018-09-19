@@ -1,0 +1,38 @@
+concept: ~all [ everybody everyone anyone "any company" "a ton of" "all of them"]
+concept: ~categorical [ "we don't have any" "there are none" "they don't have any" "can't compete" "we are the first"]
+concept: ~generic ["the best" "hardworking" "better than everybody else" ~good]
+concept: ~money [ ~moneynumber ~currency ~number ]
+
+concept: ~explain [ ~emomisunderstand "what does it mean?" "could you explain?" "I don't understand" "I don't know what you mean"
+					"what do you mean" "could you clarify" "why?" "what does that mean" "what do you mean"]
+
+concept: ~unsure [ ~emoignorance "I don't know" "not sure" "not quite sure" "I can't answer that"
+					"rather not answer" "no, I can't" "no I cannot" "no, I cannot" "no I can't"
+					"figure it out later" "don't know yet" "do not know yet"
+					"hard to pinpoint" "have no idea" ]
+
+concept: ~rude_no [ ~emocurse ~bad_words ~insults ~noanswer "not really" "I don't care" "who cares" whatever "fuck off"
+					"go away" "I don't want to say" "I won't tell you" "I don't want to"]
+					
+concept: ~stop ["I'd like to stop" "I would like to stop" "stop the chat" "stop chat" "finish chat" "please stop"
+				"show result" "stahp" "I want to see my results"]
+
+outputmacro: ^check_ins(^argument1 ^argument2 ^argument3 ^argument4 ^argument5 ^argument6 ^argument7)
+	$$output = ^argument1 + ^argument2 + ^argument3 + ^argument4 + ^argument5 + ^argument6 + ^argument7
+	$$output
+
+topic: ~start system ()
+
+t: Tell me about your startup.
+	$compet = 0
+	$fin = 0
+	$future = 0
+	$market = 0
+	$money = 0
+	$prod = 0
+	$team = 0
+
+u: ( *~2 ~unsure *~2 ) ^reuse(~deadend.UNSURE)
+u: ( *~2 ~rude_no *~2 ) ^reuse(~deadend.RUDE_NO)
+u: ( *~2 ~explain *~2 ) ^reuse(~deadend.EXPLAIN)
+u: ( *~2 ~stop *~2 ) ^reuse(~end.STOP)

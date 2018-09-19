@@ -1,0 +1,83 @@
+concept: ~unsure [	"I don't know" "not sure" "not quite sure" "I can't answer that"
+					"rather not answer" "no, I can't" "no I cannot" "no, I cannot" "no I can't"
+				]
+concept: ~all [ everybody everyone]
+concept: ~categorical [ "we don't have any" "there are none" "they don't have any" "can't compete"]
+concept: ~generic ["we are the best" "hardworking" "better than everybody else"]
+concept: ~money_rude ["how much do you have?" "how much can you give?"]
+
+
+topic: ~startup ()
+
+t: Tell me about your startup.
+	a: ()
+	$mark = 0
+	^gambit(~questions)
+
+
+
+topic: ~questions()
+
+
+r: TEAM () What relevant domain experience does the team have?
+	a: ( [ background ~education !~unsure !~categorical !~generic professional background vision inspiration believe idea commit ] )
+	$team = 1
+	$mark += 1
+
+# if team mentioned, direct to team
+r: COMPET () Who are the company's competitors?
+	a: ( [ !~unsure !~categorical competition competitor advantage company industry monopolize monopoly incentive ] )
+	$compet = 0.5
+	$mark += 0.5
+	What will give your company a competitive advantage?
+	
+	b: ( [ !~generic advantage background experience ~price feature performance ] )
+	$compet += 0.5
+	$mark += 0.5
+	
+	c: ( [ team founder co-founder employee ] ) ^reuse(TEAM)
+
+
+r: MARKET () What is the actual addressable market?
+	a: ( [ !~unsure !~all market target segment estimate percent percentage fraction year month decade professional team idea vision user client demand supply ] )
+	$market = 1
+	$mark += 1
+
+
+r: PROD () Can you tell me about your product or service?
+	a: ( [ !~unsure ~key_words ~build ~design user-friendly app application website site web-site product service allow feature ] )
+	$prod = 0.5
+	$mark += 0.5
+	How is your product different from your competitors'?
+		b: ( [ unique revolutionary revolution revolutionize ] )
+		$prod += 0.5
+		$mark += 0.5
+		^reuse(COMPET)
+
+# the dollar sign is not being caught because there's no space betw $ and number
+r: FIN () How much is being raised in this round?
+	a: ( << [ !~money_rude !~unsure money finance invest ] [dollar $ buck million thousand hundred] >> )
+	$fin = 0.5
+	$mark += 0.5
+	What is the planned use of proceeds from this round?
+		a: ( [ improve finish launch achieve complete milestone round finance develop move achieve ] )
+		$fin += 0.5
+		$mark += 0.5
+	b: (~money_rude) I can't answer that question.
+
+
+
+topic: ~results()
+
+
+t: RESULTS ()
+	# if(!$team !$compet !$market !$prod !$fin) {Sorry, you failed :(}
+	if($mark == 5) {You've got the perfect score! Congratulations!}
+	if(!$team) {You did't mention anything about the team.}
+	if(!$compet) {You did't mention anything about the competition.}
+	if($compet == 0.5) {You should work on talking about competition.}
+	if(!$market) {You did't mention anything about the market.}
+	if(!$prod) {You did't mention anything about the product.}
+	if($prod == 0.5) {You should work on talking about the product.}
+	if(!$fin) {You did't mention anything about how much you need in investments.}
+	if($fin == 0.5) {You should work on talking about investments.}
