@@ -1,0 +1,3 @@
+[submodule "RAWDATA"]
+	path = RAWDATA
+	url = https://git.lohika.com/nlp/chatbot01.git

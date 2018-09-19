@@ -1,0 +1,13 @@
+topic: ~introductions ()
+
+t:	[Hi! I want to buy something.]
+ 	[Hello, I'd like to make a purchase.]
+ 	# [Hi. Can I get some help?]
+ 	[Hello, I want to buy something.]
+	# [Hello]
+	# [hi there]
+	# [hey]
+	# [Good day.]
+	$price = null
+	$age = null
+	$type = null
